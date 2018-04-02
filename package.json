@@ -1,0 +1,72 @@
+{
+  "name": "react-context-subscriber",
+  "version": "0.1.0",
+  "description": "A HOC for subscribing to the new React Context Api",
+  "main": "lib/index.js",
+  "author": "Henri Beck",
+  "license": "MIT",
+  "files": ["lib"],
+  "scripts": {
+    "lint": "eslint src/",
+    "flow": "flow check src/",
+    "test": "ava --no-cache",
+    "prebuild": "rimraf lib/",
+    "build": "babel src -d lib/ --ignore spec.js && flow-copy-source src/ lib/ --ignore *.spec.js",
+    "prepare": "yarn run build",
+    "prepublish": "yarn run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.0.0-beta.42",
+    "@babel/core": "7.0.0-beta.42",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.42",
+    "@babel/preset-env": "7.0.0-beta.42",
+    "@babel/preset-flow": "7.0.0-beta.42",
+    "@babel/preset-react": "7.0.0-beta.42",
+    "@babel/register": "7.0.0-beta.42",
+    "ava": "1.0.0-beta.3",
+    "babel-eslint": "8.2.2",
+    "browser-env": "3.2.5",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.10.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
+    "flow-bin": "0.69.0",
+    "flow-copy-source": "1.3.0",
+    "react": "16.3.0",
+    "react-dom": "16.3.0",
+    "react-test-renderer": "16.3.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "ava": {
+    "files": [
+      "src/*.spec.js"
+    ],
+    "require": [
+      "raf/polyfill",
+      "@babel/register",
+      "./tests/helpers.js"
+    ],
+    "concurrency": 5
+  },
+  "nyc": {
+    "check-coverage": true,
+    "extension": [
+      ".jsx"
+    ],
+    "exclude": [
+      "src/*.spec.js",
+      "tests/**/*"
+    ],
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "report-dir": "./.coverage"
+  }
+}
