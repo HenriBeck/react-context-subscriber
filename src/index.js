@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 type Options = { propName?: string };
 type Props = { innerRef?: Ref<ComponentType<{}>> };
 
+const getDisplayName = (comp: ComponentType<{}>): string => comp.displayName || comp.name || 'Component';
+
 export default function subscribeToContext(
   Consumer: ComponentType<Object>,
   { propName = 'context' }: Options = {},
@@ -17,11 +19,7 @@ export default function subscribeToContext(
     function Subscriber({
       innerRef,
       ...props
-    }: Props, forwardedRef: Ref<typeof Component>) {
-      const ref = React.forwardRef ? forwardedRef : innerRef;
-
-      console.log(forwardedRef, ref);
-
+    }: Props) {
       return (
         <Consumer>
           {(context) => {
@@ -29,7 +27,7 @@ export default function subscribeToContext(
 
             return (
               <Component
-                ref={ref}
+                ref={innerRef}
                 {...addProps}
                 {...props}
               />
@@ -39,9 +37,23 @@ export default function subscribeToContext(
       );
     }
 
+    const displayName = `ContextSubscriber(${getDisplayName(Component)})`;
+
     Subscriber.propTypes = { innerRef: PropTypes.func };
     Subscriber.defaultProps = { innerRef: null };
+    Subscriber.displayName = displayName;
 
-    return React.forwardRef ? React.forwardRef(Subscriber) : Subscriber;
+    function forwardRef(props: {}, ref: Ref<ComponentType<{}>>) {
+      return (
+        <Subscriber
+          innerRef={ref}
+          {...props}
+        />
+      );
+    }
+
+    forwardRef.displayName = displayName;
+
+    return React.forwardRef ? React.forwardRef(forwardRef) : Subscriber;
   };
 }
