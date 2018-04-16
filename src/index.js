@@ -1,28 +1,25 @@
 // @flow
 
-import React, {
+import React, { // eslint-disable-line filenames/match-exported
   type ComponentType,
   type Ref,
 } from 'react';
 import PropTypes from 'prop-types';
+import getDisplayName from 'react-display-name';
 
-type Options = { propName?: string };
-type Props = { innerRef?: Ref<ComponentType<{}>> };
+type ContextType = mixed;
+type ConsumerType = ComponentType<{ children: (value: ContextType) => Node }>;
 
-const getDisplayName = (comp: ComponentType<{}>): string => comp.displayName || comp.name || 'Component';
-
-export default function subscribeToContext(
-  Consumer: ComponentType<Object>,
-  { propName = 'context' }: Options = {},
-) {
-  return (Component: ComponentType<Object>) => {
+export default function subscribeToContext(Consumer: ConsumerType, propName: string = 'context') {
+  // eslint-disable-next-line flowtype/no-weak-types
+  return function HoC<C: ComponentType<Object>>(Component: C) {
     function Subscriber({
       innerRef,
       ...props
-    }: Props) {
+    }: { innerRef?: Ref<C> | null }) {
       return (
         <Consumer>
-          {(context) => {
+          {(context: ContextType) => {
             const addProps = { [propName]: context };
 
             return (
@@ -37,23 +34,18 @@ export default function subscribeToContext(
       );
     }
 
-    const displayName = `ContextSubscriber(${getDisplayName(Component)})`;
-
     Subscriber.propTypes = { innerRef: PropTypes.func };
     Subscriber.defaultProps = { innerRef: null };
-    Subscriber.displayName = displayName;
+    Subscriber.displayName = `ContextSubscriber(${getDisplayName(Component)})`;
 
-    function forwardRef(props: {}, ref: Ref<ComponentType<{}>>) {
-      return (
+    // $FlowFixMe: Need to wait for Flow to add support for React 16.3
+    return React.forwardRef
+      ? React.forwardRef((props, ref) => (
         <Subscriber
           innerRef={ref}
           {...props}
         />
-      );
-    }
-
-    forwardRef.displayName = displayName;
-
-    return React.forwardRef ? React.forwardRef(forwardRef) : Subscriber;
+      ))
+      : Subscriber;
   };
 }
