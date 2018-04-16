@@ -9,5 +9,6 @@
 all=warn
 
 [options]
+emoji=true
 
 [strict]
