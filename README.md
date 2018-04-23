@@ -1,5 +1,7 @@
 # react-context-subscriber
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/HenriBeck/react-context-subscriber.svg)](https://greenkeeper.io/)
+
 A Higher-order-Component for subscribing to the new React Context.
 This will make the context available in the lifecycle methods etc.
 
