@@ -4,7 +4,7 @@ jobs:
   lint:
     working_directory: ~/react-context-subscriber
     docker:
-      - image: circleci/node:8@sha256:0ac63bc3d5a224deac83654a322a995332809c9f535434dfd195c26e7310ec3e
+      - image: circleci/node:8@sha256:038040743b742c720e2d6e3ec10e67612de1ad21b709b2c292c8d8cc93bc1b26
     steps:
       - checkout
       - run:
@@ -17,7 +17,7 @@ jobs:
   flow:
     working_directory: ~/react-context-subscriber
     docker:
-      - image: circleci/node:8@sha256:0ac63bc3d5a224deac83654a322a995332809c9f535434dfd195c26e7310ec3e
+      - image: circleci/node:8@sha256:038040743b742c720e2d6e3ec10e67612de1ad21b709b2c292c8d8cc93bc1b26
     steps:
       - checkout
       - run:
@@ -30,7 +30,7 @@ jobs:
   build:
     working_directory: ~/react-context-subscriber
     docker:
-      - image: circleci/node:8@sha256:0ac63bc3d5a224deac83654a322a995332809c9f535434dfd195c26e7310ec3e
+      - image: circleci/node:8@sha256:038040743b742c720e2d6e3ec10e67612de1ad21b709b2c292c8d8cc93bc1b26
     steps:
       - checkout
       - run:
