@@ -14,7 +14,7 @@
     "lint": "eslint src/",
     "flow": "flow check src/",
     "prebuild": "rimraf lib/",
-    "build": "babel src -d lib/ --ignore spec.js && flow-copy-source src/ lib/ --ignore *.spec.js",
+    "build": "babel src -d lib/ && flow-copy-source src/ lib/ --ignore *.spec.js",
     "prepare": "yarn run build"
   },
   "devDependencies": {
