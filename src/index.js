@@ -7,17 +7,16 @@ import React, { // eslint-disable-line filenames/match-exported
 import PropTypes from 'prop-types';
 import getDisplayName from 'react-display-name';
 
-export default function subscribeToContext<
-  ContextType,
-  // eslint-disable-next-line space-before-function-paren
-  ConsumerType: ComponentType<{ children: (context: ContextType) => Node }>
->(Consumer: ConsumerType, propName: string = 'context') {
+type Props<C> = { innerRef?: Ref<C> | null };
+type ConsumerComponent<Context> = ComponentType<{ children: (context: Context) => Node }>;
+
+export default function subscribeToContext<ContextType>(
+  Consumer: ConsumerComponent<ContextType>,
+  propName: string = 'context'
+) {
   // eslint-disable-next-line flowtype/no-weak-types
   return function HoC<C: ComponentType<Object>>(Component: C) {
-    function Subscriber({
-      innerRef,
-      ...props
-    }: { innerRef?: Ref<C> | null }) {
+    function Subscriber(props: Props<C>) {
       return (
         <Consumer>
           {(context: ContextType) => {
@@ -25,7 +24,7 @@ export default function subscribeToContext<
 
             return (
               <Component
-                ref={innerRef}
+                ref={props.innerRef}
                 {...addProps}
                 {...props}
               />
