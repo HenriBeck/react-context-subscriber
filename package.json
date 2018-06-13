@@ -28,8 +28,8 @@
     "eslint-config-henribeck": "4.19.7",
     "flow-bin": "0.74.0",
     "flow-copy-source": "2.0.0",
-    "react": "16.4.0",
-    "react-dom": "16.4.0"
+    "react": "16.4.1",
+    "react-dom": "16.4.1"
   },
   "peerDependencies": {
     "react": "^16.0.0"
