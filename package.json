@@ -26,7 +26,7 @@
     "@babel/preset-react": "7.0.0-beta.49",
     "eslint": "4.19.1",
     "eslint-config-henribeck": "4.19.7",
-    "flow-bin": "0.74.0",
+    "flow-bin": "0.75.0",
     "flow-copy-source": "2.0.0",
     "react": "16.4.1",
     "react-dom": "16.4.1"
