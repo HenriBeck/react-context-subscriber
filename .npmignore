@@ -8,4 +8,4 @@ tests
 .coverage
 flow-typed
 .nvmrc
-.babelrc.js
+babel.config.js
