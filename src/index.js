@@ -10,6 +10,18 @@ import getDisplayName from 'react-display-name';
 type Props<C> = { innerRef?: Ref<C> | null };
 type ConsumerComponent<Context> = ComponentType<{ children: (context: Context) => Node }>;
 
+function forwardRef(Subscriber) {
+  // $FlowFixMe: Need to wait for Flow to add support for React 16.3
+  return React.forwardRef
+    ? React.forwardRef((props, ref) => (
+      <Subscriber
+        innerRef={ref}
+        {...props}
+      />
+    ))
+    : Subscriber;
+}
+
 export default function subscribeToContext<ContextType>(
   Consumer: ConsumerComponent<ContextType>,
   propName: string = 'context'
@@ -19,7 +31,7 @@ export default function subscribeToContext<ContextType>(
     function Subscriber(props: Props<C>) {
       return (
         <Consumer>
-          {(context: ContextType) => {
+          {(context) => {
             const addProps = { [propName]: context };
 
             return (
@@ -39,13 +51,6 @@ export default function subscribeToContext<ContextType>(
     Subscriber.displayName = `ContextSubscriber(${getDisplayName(Component)})`;
 
     // $FlowFixMe: Need to wait for Flow to add support for React 16.3
-    return React.forwardRef
-      ? React.forwardRef((props, ref) => (
-        <Subscriber
-          innerRef={ref}
-          {...props}
-        />
-      ))
-      : Subscriber;
+    return forwardRef(Subscriber);
   };
 }
