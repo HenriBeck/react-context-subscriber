@@ -41,7 +41,7 @@ function createSubscriber<P, C: ComponentType<P>>(propName, Consumer, WrappedCom
         }}
       </Consumer>
     );
-  }
+  };
 }
 
 export default function subscribeToContext<ContextType>(
