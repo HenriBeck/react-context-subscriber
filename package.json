@@ -12,9 +12,11 @@
   "bugs": "https://github.com/user/HenriBeck/react-context-subscriber",
   "scripts": {
     "lint": "eslint src/",
-    "flow": "flow check src/",
+    "flow": "flow check",
     "prebuild": "rimraf lib/",
-    "build": "babel src -d lib/ && flow-copy-source src/ lib/ --ignore *.spec.js",
+    "build": "npm run build:lib && npm run build:flow",
+    "build:lib": "babel src -d lib/ --ignore *.test.js",
+    "build:flow": "flow-copy-source src/ lib/ --ignore *.test.js",
     "prepare": "yarn run build"
   },
   "devDependencies": {
@@ -35,6 +37,7 @@
     "react": "^16.0.0"
   },
   "dependencies": {
+    "hoist-non-react-statics": "^2.5.5",
     "prop-types": "^15.6.1",
     "react-display-name": "^0.2.3"
   }
