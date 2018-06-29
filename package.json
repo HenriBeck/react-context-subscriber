@@ -29,7 +29,7 @@
     "eslint": "5.0.1",
     "eslint-config-henribeck": "5.0.4",
     "flow-bin": "0.75.0",
-    "flow-copy-source": "2.0.0",
+    "flow-copy-source": "2.0.1",
     "react": "16.4.1",
     "react-dom": "16.4.1"
   },
