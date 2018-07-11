@@ -25,7 +25,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.52",
     "@babel/preset-env": "7.0.0-beta.52",
     "@babel/preset-flow": "7.0.0-beta.52",
-    "@babel/preset-react": "7.0.0-beta.52",
+    "@babel/preset-react": "7.0.0-beta.53",
     "eslint": "5.1.0",
     "eslint-config-henribeck": "5.1.0",
     "flow-bin": "0.76.0",
