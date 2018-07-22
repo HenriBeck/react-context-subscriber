@@ -39,6 +39,6 @@
   "dependencies": {
     "hoist-non-react-statics": "2.5.5",
     "prop-types": "15.6.2",
-    "react-display-name": "0.2.3"
+    "react-display-name": "0.2.4"
   }
 }
