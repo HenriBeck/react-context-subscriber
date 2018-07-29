@@ -20,12 +20,12 @@
     "prepare": "yarn run build"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.54",
-    "@babel/core": "7.0.0-beta.54",
-    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.54",
-    "@babel/preset-env": "7.0.0-beta.54",
-    "@babel/preset-flow": "7.0.0-beta.54",
-    "@babel/preset-react": "7.0.0-beta.54",
+    "@babel/cli": "7.0.0-beta.55",
+    "@babel/core": "7.0.0-beta.55",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.55",
+    "@babel/preset-env": "7.0.0-beta.55",
+    "@babel/preset-flow": "7.0.0-beta.55",
+    "@babel/preset-react": "7.0.0-beta.55",
     "eslint": "5.2.0",
     "eslint-config-henribeck": "5.2.2",
     "flow-bin": "0.77.0",
