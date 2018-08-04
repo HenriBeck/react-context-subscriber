@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.56",
-    "@babel/core": "7.0.0-beta.55",
-    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.55",
+    "@babel/core": "7.0.0-beta.56",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.56",
     "@babel/preset-env": "7.0.0-beta.56",
     "@babel/preset-flow": "7.0.0-beta.56",
     "@babel/preset-react": "7.0.0-beta.56",
